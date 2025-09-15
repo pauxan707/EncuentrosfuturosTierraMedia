@@ -6,7 +6,7 @@ public class Wizard
 {
     public string Name { get; set; }
     public double Life { get; set; }
-    private List<string> itemList { get; set; }
-    private list<string> spellBook { get; set; }
+    private List<string> itemList { get; set; } = new List<string>();
+    private list<string> spellBook { get; set; } = new List<string>();
     
 }
