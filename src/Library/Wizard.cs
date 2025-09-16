@@ -3,16 +3,15 @@
 public class Wizard
 {
     public string Name { get; set; }
-    public double ILife { get; set; }
-
-
-    public Wizard(string name, double ilife)
+    public double Life { get; set; }
+    public double InitialLife { get; set; } //Vida inicial, se utilizará después para curarlo
+    private List<Item> _itemList = new List<Item>(); //Lista de armas, pociones, etc
+    public Wizard(string name, double life, double initialLife)
     {
         Name = name;
-        ILife = ilife;
+        Life = life;
+        InitialLife = life;
     }
-
-    private List<Item> _itemList = new List<Item>(); //Lista de armas, pociones, etc
 
     public void AddItem(Item item)
     {
@@ -53,6 +52,14 @@ public class Wizard
     }
     public void Heal()
     {
-        Life = ILife;
+        Life = InitialLife;
+    }
+
+    public void Attack(Wizard target)
+    {
+        double damage = this.GetAttackPower() - target.GetDefensePower();
+        if (damage < 0) damage = 0;
+        target.Life -= damage;
+        if (target.Life < 0) target.Life = 0;
     }
 }

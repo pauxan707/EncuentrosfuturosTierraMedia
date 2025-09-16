@@ -3,16 +3,16 @@
 public class Elves
 {
     public string Name { get; set; }
-    public double ILife { get; set; }
+    public double Life { get; set; }
+    public double InitialLife { get; set; } //Vida inicial, se utilizará después para curarlo
+    private List<Item> _itemList = new List<Item>();
 
-
-    public Elves(string name, double ilife)
+    public Elves(string name, double life, double initialLife)
     {
         Name = name;
-        ILife = ilife;
+        Life = life;
+        InitialLife = life;
     }
-
-    private List<Item> _itemList = new List<Item>();
     
     public void AddItem(Item item)
     {
@@ -55,6 +55,6 @@ public class Elves
     }
     public void Heal()
     {
-        Life = ILife;
+        Life = InitialLife;
     }
 }
