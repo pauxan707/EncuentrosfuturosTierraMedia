@@ -6,6 +6,7 @@ public class Wizard
     public double Life { get; set; }
     public double InitialLife { get; set; } //Vida inicial, se utilizará después para curarlo
     private List<Item> _itemList = new List<Item>(); //Lista de armas, pociones, etc
+    
     public Wizard(string name, double life, double initialLife)
     {
         Name = name;
@@ -50,12 +51,13 @@ public class Wizard
         }
         return totalPower;
     }
+    
     public void Heal()
     {
         Life = InitialLife;
     }
 
-    public void Attack(Wizard target)
+    public void Attack(Wizard target) //Creo que vamos a tener que hacer uno distinto, por eso no lo agregue los otors
     {
         double damage = this.GetAttackPower() - target.GetDefensePower();
         if (damage < 0) damage = 0;
