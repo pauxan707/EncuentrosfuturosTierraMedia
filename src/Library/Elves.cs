@@ -3,16 +3,26 @@
 public class Elves
 {
     public string Name { get; set; }
-    public double Life { get; set; }
+    public double ILife { get; set; }
 
 
-    public Elves(string name, double life)
+    public Elves(string name, double ilife)
     {
         Name = name;
-        Life = life;
+        ILife = ilife;
     }
 
     private List<Item> _itemList = new List<Item>();
+    
+    public void AddItem(Item item)
+    {
+        _itemList.Add(item);
+    }
+
+    public void RemoveItem(Item item)
+    {
+        _itemList.Remove(item);
+    }
     public double GetAttackPower()
     {
         double totalPower = 0;
@@ -42,5 +52,9 @@ public class Elves
         }
 
         return totalPower;
+    }
+    public void Heal()
+    {
+        Life = ILife;
     }
 }
