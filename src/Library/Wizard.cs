@@ -1,12 +1,49 @@
-﻿using System.Runtime.Intrinsics.Arm;
-
-namespace Library;
+﻿namespace Library;
 
 public class Wizard
 {
     public string Name { get; set; }
     public double Life { get; set; }
-    private List<string> itemList { get; set; } = new List<string>();
-    private list<string> spellBook { get; set; } = new List<string>();
-    
+
+
+    public Wizard(string name, double life)
+    {
+        Name = name;
+        Life = life;
+    }
+
+    private List<Item> _itemList = new List<Item>();
+
+    public double GetAttackPower()
+    {
+        double totalPower = 0;
+        foreach (var Item in this._itemList)
+        {
+            totalPower += Item.AttackPower;
+        }
+
+        return totalPower;
+    }
+
+    public double GetHealingPower()
+    {
+        double totalPower = 0;
+        foreach (var Item in this._itemList)
+        {
+            totalPower += Item.HealingPower;
+        }
+
+        return totalPower;
+    }
+
+    public double GetDefensePower()
+    {
+        double totalPower = 0;
+        foreach (var Item in this._itemList)
+        {
+            totalPower += Item.DefensePower;
+        }
+
+        return totalPower;
+    }
 }
