@@ -2,7 +2,7 @@
 
 class Program
 {
-    static void Main() ///prueba
+    static void Main()
     {
         Wizard yanfei = new Wizard("Yanfei", 150, 150);
         Wizard qiqi = new Wizard("Qiqi", 100, 100);

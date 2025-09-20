@@ -55,9 +55,12 @@ public class Elves: ICombatant
         return totalPower;
     }
 
-    public void Heal() //Restores full life 
+    public void Heal() //Restores life to their inicial value
     {
-        Life = InitialLife;
+        if (Life > 0)
+        {
+            Life = InitialLife;
+        }
     }
 
         public void Attack(ICombatant target) //Allows this character to attack

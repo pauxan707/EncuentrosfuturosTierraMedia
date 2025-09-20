@@ -1,9 +1,10 @@
 ﻿namespace Library;
+//Represents a Wizard character,implements ICombatant to define common combat actions.
 
 public class Wizard : ICombatant
 {
-    public string Name { get; set; } //Name
-    public double Life { get; set; } //Life
+    public string Name { get; set; }
+    public double Life { get; set; } //Current life
     public double InitialLife { get; set; } //Initial life
     private List<Item> _itemList = new List<Item>(); //List of weapons, potions, etc
 
@@ -14,16 +15,16 @@ public class Wizard : ICombatant
         InitialLife = initialLife;
     }
 
-    public void AddItem(Item item) //Adds an item to the list of items
+    public void AddItem(Item item) //Adds an item to the wizard' inventory (_itemslist)
     {
         _itemList.Add(item);
     }
 
-    public void RemoveItem(Item item) //Removes an item from the list of items
+    public void RemoveItem(Item item) //Removes an item
     {
         _itemList.Remove(item);
     }
-    public double GetAttackPower() //calculates its total attack power by summing up each item in the list
+    public double GetAttackPower() //Calculates its total attack power by summing up each item in the list
     {
         double totalPower = 0;
         foreach (var Item in this._itemList)
@@ -33,7 +34,7 @@ public class Wizard : ICombatant
         return totalPower;
     }
 
-    public double GetHealingPower() //calculates its total healing power by summing up each item in the list
+    public double GetHealingPower() //Calculates its total healing power by summing up each item in the list
     {
         double totalPower = 0;
         foreach (var Item in this._itemList)
@@ -42,7 +43,7 @@ public class Wizard : ICombatant
         }
         return totalPower;
     }
-    public double GetDefensePower() //calculates its total defense by summing up each item in the list
+    public double GetDefensePower() //Calculates its total defense by summing up each item in the list
     {
         double totalPower = 0;
         foreach (var Item in this._itemList)
@@ -52,9 +53,12 @@ public class Wizard : ICombatant
         return totalPower;
     }
 
-    public void Heal() //Restores full life 
+    public void Heal() //Restores life to their inicial value
     {
-        Life = InitialLife;
+        if (Life > 0)
+        {
+            Life = InitialLife;
+        }
     }
 
     public void Attack(ICombatant target) //Allows this character to attack
@@ -64,7 +68,7 @@ public class Wizard : ICombatant
     public void TakeDamage(double damage) //Handles taking damage
     {
         double RealDamage = damage - GetDefensePower();
-        if (RealDamage < 0) RealDamage = 0; //Damage can´t be negative
+        if (RealDamage < 0) RealDamage = 0; //Ensures that the damage value cannot be negative
         Life -= RealDamage;
         if (Life < 0) Life = 0; //Life can't be negative
     }

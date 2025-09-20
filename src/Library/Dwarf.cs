@@ -3,9 +3,9 @@
 public class Dwarf: ICombatant
 {
     public string Name { get; set; }
-    public double Life { get; set; }
-    public double InitialLife { get; set; } //Vida inicial, se utilizará después para curarlo
-    private List<Item> _itemList = new List<Item>();
+    public double Life { get; set; } //Current life
+    public double InitialLife { get; set; } //Initial life
+    private List<Item> _itemList = new List<Item>(); //List of weapons, potions, etc
 
     public Dwarf(string name, double life, double initialLife)
     {
@@ -56,9 +56,12 @@ public class Dwarf: ICombatant
         return totalPower;
     }
 
-    public void Heal() //Restores full life 
+    public void Heal() //Restores life to their inicial value
     {
-        Life = InitialLife;
+        if (Life > 0)
+        {
+            Life = InitialLife;
+        }
     }
         public void Attack(ICombatant target) //Allows this character to attack
     {
