@@ -1,12 +1,12 @@
 ﻿namespace Library;
 
-public class Wizard
+public class Wizard : ICombatant
 {
-    public string Name { get; set; }
-    public double Life { get; set; }
-    public double InitialLife { get; set; } //Vida inicial, se utilizará después para curarlo
-    private List<Item> _itemList = new List<Item>(); //Lista de armas, pociones, etc
-    
+    public string Name { get; set; } //Name
+    public double Life { get; set; } //Life
+    public double InitialLife { get; set; } //Initial life
+    private List<Item> _itemList = new List<Item>(); //List of weapons, potions, etc
+
     public Wizard(string name, double life, double initialLife)
     {
         Name = name;
@@ -14,16 +14,16 @@ public class Wizard
         InitialLife = life;
     }
 
-    public void AddItem(Item item)
+    public void AddItem(Item item) //Adds an item to the list of items
     {
         _itemList.Add(item);
     }
 
-    public void RemoveItem(Item item)
+    public void RemoveItem(Item item) //Removes an item from the list of items
     {
         _itemList.Remove(item);
     }
-    public double GetAttackPower()
+    public double GetAttackPower() //calculates its total attack power by summing up each item in the list
     {
         double totalPower = 0;
         foreach (var Item in this._itemList)
@@ -33,7 +33,7 @@ public class Wizard
         return totalPower;
     }
 
-    public double GetHealingPower()
+    public double GetHealingPower() //calculates its total healing power by summing up each item in the list
     {
         double totalPower = 0;
         foreach (var Item in this._itemList)
@@ -42,7 +42,7 @@ public class Wizard
         }
         return totalPower;
     }
-    public double GetDefensePower()
+    public double GetDefensePower() //calculates its total defense by summing up each item in the list
     {
         double totalPower = 0;
         foreach (var Item in this._itemList)
@@ -51,17 +51,33 @@ public class Wizard
         }
         return totalPower;
     }
-    
-    public void Heal()
+
+    public void Heal() //Restores full life 
     {
         Life = InitialLife;
     }
 
-    public void Attack(Wizard target) //Creo que vamos a tener que hacer uno distinto, por eso no lo agregue los otors
+    public void Attack(ICombatant target) //Allows this character to attack
     {
-        double damage = this.GetAttackPower() - target.GetDefensePower();
-        if (damage < 0) damage = 0;
-        target.Life -= damage;
-        if (target.Life < 0) target.Life = 0;
+        target.TakeDamage(GetAttackPower());
+    }
+    public void TakeDamage(double damage) //Handles taking damage
+    {
+        double RealDamage = damage - GetDefensePower();
+        if (RealDamage < 0) RealDamage = 0; //Damage can´t be negative
+        Life -= RealDamage;
+        if (Life < 0) Life = 0; //Life can't be negative
+    }
+    public void HealOthers(ICombatant target) //Allows healing others
+    {
+        target.TakeHeal(GetHealingPower());
+    }
+    public void TakeHeal(double HP) //Allows getting healed
+    {
+        Life += HP;
+        if (Life > InitialLife)
+        {
+            Life = InitialLife; //Life can't be higher than InitialLife
+        }
     }
 }
