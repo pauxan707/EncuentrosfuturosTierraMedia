@@ -3,9 +3,9 @@
 public class Elves: ICombatant
 {
     public string Name { get; set; }
-    public double Life { get; set; }
-    public double InitialLife { get; set; } //Vida inicial, se utilizará después para curarlo
-    private List<Item> _itemList = new List<Item>();
+    public double Life { get; set; } //Current life
+    public double InitialLife { get; set; } //Initial life
+    private List<Item> _itemList = new List<Item>(); //List of weapons, potions, etc
 
     public Elves(string name, double life, double initialLife)
     {
@@ -14,16 +14,16 @@ public class Elves: ICombatant
         InitialLife = initialLife;
     }
 
-    public void AddItem(Item item) //Adds an item to the list of items
+    public void AddItem(Item item) //Adds an item to the elves inventory (_itemslist)
     {
         _itemList.Add(item);
     }
 
-    public void RemoveItem(Item item) //Removes an item from the list of items
+    public void RemoveItem(Item item) //Removes an item 
     {
         _itemList.Remove(item);
     }
-    public double GetAttackPower() //calculates its total attack power by summing up each item in the list
+    public double GetAttackPower() //Calculates its total attack power by summing up each item in the list
     {
         double totalPower = 0;
         foreach (var Item in this._itemList)
@@ -35,7 +35,7 @@ public class Elves: ICombatant
         
     }
 
-    public double GetHealingPower() //calculates its total healing power by summing up each item in the list
+    public double GetHealingPower() //Calculates its total healing power by summing up each item in the list
     {
         double totalPower = 0;
         foreach (var Item in this._itemList)
@@ -44,7 +44,7 @@ public class Elves: ICombatant
         }
         return totalPower;
     }
-    public double GetDefensePower() //calculates its total defense by summing up each item in the list
+    public double GetDefensePower() //Calculates its total defense by summing up each item in the list
     {
         double totalPower = 0;
         foreach (var Item in this._itemList)
@@ -70,7 +70,7 @@ public class Elves: ICombatant
     public void TakeDamage(double damage) //Handles taking damage
     {
         double RealDamage = damage - GetDefensePower();
-        if (RealDamage < 0) RealDamage = 0; //Damage can´t be negative
+        if (RealDamage < 0) RealDamage = 0; //Ensures that the damage value cannot be negative
         Life -= RealDamage;
         if (Life < 0) Life = 0; //Life can't be negative
     }

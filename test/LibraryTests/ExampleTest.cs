@@ -4,11 +4,6 @@ namespace LibraryTests;
 
 public class Tests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
     [Test]
     public void TestAttack() //Testing if the attack, items, item list and species are working properly
     {
@@ -72,5 +67,4 @@ public class Tests
         wizard1.Attack(dwarf1);
         Assert.AreEqual(100,dwarf1.Life);
     }
-
 }
