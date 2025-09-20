@@ -30,6 +30,7 @@ public class Wizard : ICombatant
     {
         _itemList.Remove(item);
     }
+    
     public double GetAttackPower() //Calculates its total attack power by summing up each item in the list
     {
         double totalPower = 0;
@@ -53,6 +54,7 @@ public class Wizard : ICombatant
         }
         return totalPower;
     }
+    
     public double GetDefensePower() //Calculates its total defense by summing up each item in the list
     {
         double totalPower = 0;
@@ -75,6 +77,7 @@ public class Wizard : ICombatant
     {
         target.TakeDamage(GetAttackPower());
     }
+    
     public void TakeDamage(double damage) //Handles taking damage
     {
         double RealDamage = damage - GetDefensePower();
@@ -82,6 +85,7 @@ public class Wizard : ICombatant
         Life -= RealDamage;
         if (Life < 0) Life = 0; //Life can't be negative
     }
+    
     /// <summary>
     /// Expert: Wizard conoce su poder de curación y sabe cómo usarlo
     /// Low Coupling Y Polymorphism: Funciona con cualquier ICombatant

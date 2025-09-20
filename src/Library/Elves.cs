@@ -28,6 +28,7 @@ public class Elves: ICombatant
     {
         _itemList.Remove(item);
     }
+    
     public double GetAttackPower() //Calculates its total attack power by summing up each item in the list
     {
         double totalPower = 0;
@@ -35,9 +36,7 @@ public class Elves: ICombatant
         {
             totalPower += Item.AttackPower;
         }
-
         return totalPower;
-        
     }
 
     public double GetHealingPower() //Calculates its total healing power by summing up each item in the list
@@ -49,6 +48,7 @@ public class Elves: ICombatant
         }
         return totalPower;
     }
+    
     public double GetDefensePower() //Calculates its total defense by summing up each item in the list
     {
         double totalPower = 0;
@@ -56,7 +56,6 @@ public class Elves: ICombatant
         {
             totalPower += Item.DefensePower;
         }
-        
         return totalPower;
     }
 
@@ -68,10 +67,11 @@ public class Elves: ICombatant
         }
     }
 
-        public void Attack(ICombatant target) //Allows this character to attack
+    public void Attack(ICombatant target) //Allows this character to attack
     {
         target.TakeDamage(GetAttackPower());
     }
+    
     public void TakeDamage(double damage) //Handles taking damage
     {
         double RealDamage = damage - GetDefensePower();
@@ -79,10 +79,12 @@ public class Elves: ICombatant
         Life -= RealDamage;
         if (Life < 0) Life = 0; //Life can't be negative
     }
+    
     public void HealOthers(ICombatant target) //Allows healing others
     {
         target.TakeHeal(GetHealingPower());
     }
+    
     public void TakeHeal(double HP) //Allows getting healed
     {
         Life += HP;
