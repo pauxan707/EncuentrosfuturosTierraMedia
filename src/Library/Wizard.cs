@@ -11,7 +11,7 @@ public class Wizard : ICombatant
     {
         Name = name;
         Life = life;
-        InitialLife = life;
+        InitialLife = initialLife;
     }
 
     public void AddItem(Item item) //Adds an item to the list of items
