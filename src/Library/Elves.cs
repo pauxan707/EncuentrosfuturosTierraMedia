@@ -1,5 +1,10 @@
 ﻿namespace Library;
-
+/// <summary>
+/// Representa un Elve que implementa ICombatant para definir acciones comunes de combate.
+/// 
+/// SRP: Esta clase solo maneja los comportamientos específicos de elves
+/// Expert: Elves es experto en su propia información (items, vida, poderes)
+/// </summary>
 public class Elves: ICombatant
 {
     public string Name { get; set; }
