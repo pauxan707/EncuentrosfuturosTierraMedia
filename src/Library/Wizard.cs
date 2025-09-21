@@ -13,22 +13,34 @@ public class Wizard : ICombatant
     public double Life { get; set; } //Current life
     public double InitialLife { get; set; } //Initial life
     private List<Item> _itemList = new List<Item>(); //List of weapons, potions, etc
+    private List<Spell> _spellBook = new List<Spell>(); //spellbook, list of all the wizard´s spells
 
     public Wizard(string name, double life, double initialLife)
     {
         Name = name;
         Life = life;
         InitialLife = initialLife;
+        
     }
 
-    public void AddItem(Item item) //Adds an item to the wizard' inventory (_itemslist)
+    public void AddItem(Item item) //Adds an item to the wizard's inventory (_itemslist)
     {
         _itemList.Add(item);
+    }
+    
+    public void AddSpell(Spell spell) 
+    {
+        _spellBook.Add(spell);
     }
 
     public void RemoveItem(Item item) //Removes an item
     {
         _itemList.Remove(item);
+    }
+    
+    public void RemoveSpell(Spell spell) 
+    {
+        _spellBook.Remove(spell);
     }
     
     public double GetAttackPower() //Calculates its total attack power by summing up each item in the list
@@ -37,6 +49,11 @@ public class Wizard : ICombatant
         foreach (var item in this._itemList)
         {
             totalPower += item.AttackPower;
+        }
+
+        foreach (var spell in this._spellBook)
+        {
+            totalPower += spell.AttackPower;
         }
         return totalPower;
     }

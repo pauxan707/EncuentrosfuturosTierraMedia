@@ -9,6 +9,9 @@ class Program
     
         Item espada = new Item("Rey de los Mares", 30, 10, 0);
         qiqi.AddItem(espada);
+
+        Spell fireball = new Spell("Fireball", 100, 0);
+        qiqi.AddSpell(fireball);
         
         Item grimorioReal = new Item("Grimorio Real", 20, 0, 15);
         yanfei.AddItem(grimorioReal);
