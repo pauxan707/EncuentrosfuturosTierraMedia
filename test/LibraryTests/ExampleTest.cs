@@ -14,7 +14,7 @@ public class Tests
         wizard.AddItem(item1);
         dwarf.AddItem(item2);
         wizard.Attack(dwarf);
-        Assert.AreEqual(1, dwarf.Life);
+        Assert.AreEqual(1, dwarf.Life); 
     }
     [Test]
     public void TestLife() //Tests if life doesn't become negative after getting attacked

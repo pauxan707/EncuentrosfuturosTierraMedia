@@ -32,9 +32,9 @@ public class Dwarf: ICombatant
     public double GetAttackPower() //Calculates its total attack power by summing up each item in the list
     {
         double totalPower = 0;
-        foreach (var Item in this._itemList)
+        foreach (var item in this._itemList)
         {
-            totalPower += Item.AttackPower;
+            totalPower += item.AttackPower;
         }
         return totalPower;
     }
@@ -42,9 +42,9 @@ public class Dwarf: ICombatant
     public double GetHealingPower() //Calculates its total healing power by summing up each item in the list
     {
         double totalPower = 0;
-        foreach (var Item in this._itemList)
+        foreach (var item in this._itemList)
         {
-            totalPower += Item.HealingPower;
+            totalPower += item.HealingPower;
         }
         return totalPower;
     }
@@ -52,9 +52,9 @@ public class Dwarf: ICombatant
     public double GetDefensePower() //Calculates its total defense by summing up each item in the list
     {
         double totalPower = 0;
-        foreach (var Item in this._itemList)
+        foreach (var item in this._itemList)
         {
-            totalPower += Item.DefensePower;
+            totalPower += item.DefensePower;
         }
         return totalPower;
     }
@@ -74,9 +74,9 @@ public class Dwarf: ICombatant
         
     public void TakeDamage(double damage) //Handles taking damage
     {
-        double RealDamage = damage - GetDefensePower();
-        if (RealDamage < 0) RealDamage = 0; //Ensures that the damage value cannot be negative
-        Life -= RealDamage;
+        double realDamage = damage - GetDefensePower();
+        if (realDamage < 0) realDamage = 0; //Ensures that the damage value cannot be negative
+        Life -= realDamage;
         if (Life < 0) Life = 0; //Life can't be negative
     }
     
@@ -85,9 +85,9 @@ public class Dwarf: ICombatant
         target.TakeHeal(GetHealingPower());
     }
     
-    public void TakeHeal(double HP) //Allows getting healed
+    public void TakeHeal(double hp) //Allows getting healed
     {
-        Life += HP;
+        Life += hp;
         if (Life > InitialLife)
         {
             Life = InitialLife; //Life can't be higher than InitialLife
