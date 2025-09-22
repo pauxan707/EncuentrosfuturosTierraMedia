@@ -67,4 +67,16 @@ public class Tests
         wizard1.Attack(dwarf1);
         Assert.AreEqual(100,dwarf1.Life);
     }
+    [Test]
+    public void TestSpells() // Tests if spells can be added to a wizard's spellbook and correctly attack an enemy.
+    {
+        var wizard1 = new Wizard("Anto the ice wizard",  100, 100);
+        var dwarf1 = new Dwarf("Lionel Messi", 60, 100);
+        var spell1 = new Spell("Lighting spell", 50, 30);
+        wizard1.AddSpell(spell1);
+        wizard1.Attack(dwarf1);
+        Assert.AreEqual(10, dwarf1.Life);
+        
+    }
+    
 }
